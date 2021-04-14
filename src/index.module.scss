@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 0 auto;
+  border: 5px solid dodgerblue;
+  text-align: center;
+  font-family: sans-serif;
+  border-collapse: collapse;
+  // min-width: 835px;
+}
+
+.colTh {
+  border: 5px solid dodgerblue;
+  padding: 10px;
+}
+
+.colTb {
+  padding: 10px;
+  border-right: 5px solid dodgerblue;
+}
