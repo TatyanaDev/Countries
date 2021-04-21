@@ -1,95 +1,108 @@
-import React, { Component } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './index.module.scss';
 
-class App extends Component {
-  state = { data: [], flag: true };
+function App () {
+  const [data, setData] = useState([]);
+  const [flag, setFlag] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  componentDidMount () {
-    const url = 'https://restcountries.eu/rest/v2/all';
-    try {
-      fetch(url)
-        .then(res => {
+  useEffect(() => {
+    fetch('https://restcountries.eu/rest/v2/all')
+      .then(res => {
+        if (res.ok) {
           return res.json();
-        })
-        .then(data => {
-          this.setState({ data });
-        });
-    } catch (err) {
-      return null;
-    }
-  }
+        }
+        throw res;
+      })
+      .then(data => {
+        setData(data);
+      })
+      .catch(err => {
+        console.error('Error fetching data:', err);
+        setError(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
-  // methods = () => {
-  //   const { data, flag } = this.state;
-  //   if (flag) {
-  //     this.setState({
-  //       data: data.sort((a, b) => {
-  //         a - b;
-  //       }),
-  //     });
-  //     return;
-  //   } else {
-  //     this.setState({
-  //       data: data.sort((a, b) => {
-  //         b - a;
-  //       }),
-  //     });
-  //     return;
-  //   }
-  //   this.setState({ flag: !flag });
-  // };
+  if (loading) return 'Loading...';
+  if (error) return 'Error!';
 
-  sort = () => {
-    let { data, flag } = this.state;
-    // const qwert = (a, b) => {
-    //   if (a.population < b.population) {
-    //     return a.population - b.population;
-    //   }
-    //   return b.population - a.population;
-    // };
-    // // data.sort(qwert);
-    // const predicates = {
-    //   asc: function (a, b) {
-    //     return (a > b) - (b > a);
-    //   },
-    //   desc: function (a, b) {
-    //     return (a < b) - (b < a);
-    //   },
-
-    // let flag = false;
-
-    // data.sort(predicates[flag ? 'asc' : 'desc']);
-
-    this.setState({ flag: !flag });
+  const sortCountry = () => {
+    data.sort((a, b) => [
+      flag ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name),
+    ]);
+    setFlag(flag => !flag);
   };
 
-  filter = () => {
-    let { data } = this.state;
-
-    // const filterCountry = ({ value }) => {
-    //   return value.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1;
-    // };
-
-    this.setState({ data });
+  const sortCapital = () => {
+    data.sort((a, b) => [
+      flag
+        ? a.capital.localeCompare(b.capital)
+        : b.capital.localeCompare(a.capital),
+    ]);
+    setFlag(flag => !flag);
   };
 
-  render () {
-    return (
-      <>
-        <input />
-        <table className={styles.container}>
-          <thead>
-            <tr>
-              <th className={styles.colTh}>Country</th>
-              <th className={styles.colTh}>Capital</th>
-              <th className={styles.colTh} onClick={this.methods}>
-                Population
-              </th>
-              <th className={styles.colTh}>Phone code</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.data.map((country, index) => {
+  const sortPopulation = () => {
+    data.sort((a, b) => [
+      flag ? a.population - b.population : b.population - a.population,
+    ]);
+    setFlag(flag => !flag);
+  };
+
+  const sortPhoneСode = () => {
+    data.sort((a, b) => [
+      flag ? a.callingCodes - b.callingCodes : b.callingCodes - a.callingCodes,
+    ]);
+    setFlag(flag => !flag);
+  };
+
+  const filter = () => {
+    setData();
+  };
+
+  return (
+    <>
+      <table className={styles.container}>
+        <thead>
+          <tr>
+            <th className={styles.colTh} onClick={sortCountry}>
+              Country
+            </th>
+            <th className={styles.colTh} onClick={sortCapital}>
+              Capital
+            </th>
+            <th className={styles.colTh} onClick={sortPopulation}>
+              Population
+            </th>
+            <th className={styles.colTh} onClick={sortPhoneСode}>
+              Phone code
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <input
+            type='text'
+            placeholder='Search...'
+            onChange={event => {
+              setSearchTerm(event.target.value);
+            }}
+          />
+          {data
+            .filter(country => {
+              if (searchTerm === '') {
+                return country;
+              } else if (
+                country.name.toLowerCase().includes(searchTerm.toLowerCase())
+              ) {
+                return country;
+              }
+            })
+            .map((country, index) => {
               return (
                 <tr key={index}>
                   <td className={styles.colTb}>{country.name}</td>
@@ -99,11 +112,10 @@ class App extends Component {
                 </tr>
               );
             })}
-          </tbody>
-        </table>
-      </>
-    );
-  }
+        </tbody>
+      </table>
+    </>
+  );
 }
 
 export default App;
