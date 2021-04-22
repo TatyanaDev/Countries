@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+.containerSkeleton {
+  max-width: 825px;
+  margin: 0 auto;
+}
+
 .container {
   margin: 0 auto;
   border: 5px solid dodgerblue;

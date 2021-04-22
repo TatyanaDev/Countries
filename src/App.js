@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Skeleton from '@material-ui/lab/Skeleton';
 import styles from './index.module.scss';
 
 function App () {
@@ -28,7 +29,6 @@ function App () {
       });
   }, []);
 
-  if (loading) return 'Loading...';
   if (error) return 'Error!';
 
   const sortCountry = () => {
@@ -66,55 +66,72 @@ function App () {
   };
 
   return (
-    <>
-      <table className={styles.container}>
-        <thead>
-          <tr>
-            <th className={styles.colTh} onClick={sortCountry}>
-              Country
-            </th>
-            <th className={styles.colTh} onClick={sortCapital}>
-              Capital
-            </th>
-            <th className={styles.colTh} onClick={sortPopulation}>
-              Population
-            </th>
-            <th className={styles.colTh} onClick={sortPhoneСode}>
-              Phone code
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <input
-            type='text'
-            placeholder='Search...'
-            onChange={event => {
-              setSearchTerm(event.target.value);
-            }}
-          />
-          {data
-            .filter(country => {
-              if (searchTerm === '') {
-                return country;
-              } else if (
-                country.name.toLowerCase().includes(searchTerm.toLowerCase())
-              ) {
-                return country;
-              }
-            })
-            .map((country, index) => {
-              return (
-                <tr key={index}>
-                  <td className={styles.colTb}>{country.name}</td>
-                  <td className={styles.colTb}>{country.capital}</td>
-                  <td className={styles.colTb}>{country.population}</td>
-                  <td className={styles.colTb}>{country.callingCodes}</td>
-                </tr>
-              );
-            })}
-        </tbody>
-      </table>
-    </>
+    <div>
+      {loading ? (
+        <div className={styles.containerSkeleton}>
+          <Skeleton variant='text' height={36} />
+          <Skeleton variant='text' height={36} />
+          <Skeleton variant='text' height={36} />
+          <Skeleton variant='text' height={36} />
+          <Skeleton variant='text' height={36} />
+          <Skeleton variant='text' height={36} />
+          <Skeleton variant='text' height={36} />
+          <Skeleton variant='text' height={36} />
+          <Skeleton variant='text' height={36} />
+          <Skeleton variant='text' height={36} />
+        </div>
+      ) : (
+        <table className={styles.container}>
+          <thead>
+            <tr>
+              <th className={styles.colTh} onClick={sortCountry}>
+                Country
+              </th>
+              <th className={styles.colTh} onClick={sortCapital}>
+                Capital
+              </th>
+              <th className={styles.colTh} onClick={sortPopulation}>
+                Population
+              </th>
+              <th className={styles.colTh} onClick={sortPhoneСode}>
+                Phone code
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <input
+              type='text'
+              placeholder='Search...'
+              onChange={event => {
+                setSearchTerm(event.target.value);
+              }}
+            />
+            {data
+              .filter(country => {
+                if (searchTerm === '') {
+                  return country;
+                } else if (
+                  country.name.toLowerCase().includes(searchTerm.toLowerCase())
+                ) {
+                  return country;
+                }
+              })
+              .map((country, index) => {
+                return (
+                  <>
+                    <tr key={index}>
+                      <td className={styles.colTb}>{country.name}</td>
+                      <td className={styles.colTb}>{country.capital}</td>
+                      <td className={styles.colTb}>{country.population}</td>
+                      <td className={styles.colTb}>{country.callingCodes}</td>
+                    </tr>
+                  </>
+                );
+              })}
+          </tbody>
+        </table>
+      )}
+    </div>
   );
 }
 
