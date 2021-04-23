@@ -30,7 +30,7 @@ function App () {
   }, []);
 
   if (error) return 'Error!';
-
+  
   const sortCountry = () => {
     data.sort((a, b) => [
       flag ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name),
@@ -67,6 +67,13 @@ function App () {
 
   return (
     <div>
+      <input
+        type='text'
+        placeholder='Search...'
+        onChange={e => {
+          setSearchTerm(e.target.value);
+        }}
+      />
       {loading ? (
         <div className={styles.containerSkeleton}>
           <Skeleton variant='text' height={36} />
@@ -99,13 +106,6 @@ function App () {
             </tr>
           </thead>
           <tbody>
-            <input
-              type='text'
-              placeholder='Search...'
-              onChange={event => {
-                setSearchTerm(event.target.value);
-              }}
-            />
             {data
               .filter(country => {
                 if (searchTerm === '') {
