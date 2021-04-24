@@ -2,26 +2,69 @@
   box-sizing: border-box;
 }
 
+body {
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 0%,
+    rgba(0, 212, 255, 1) 85%
+  );
+}
+
+.inputSkeleton {
+  max-width: 209px;
+}
+
+.input {
+  margin-top: 7px;
+  outline: none;
+}
+
 .containerSkeleton {
-  max-width: 825px;
+  max-width: 835px;
   margin: 0 auto;
+  margin-top: 48px;
 }
 
 .container {
   margin: 0 auto;
-  border: 5px solid dodgerblue;
+  margin-top: 50px;
+  border: 5px solid black;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 0%,
+    rgba(0, 212, 255, 1) 85%
+  );
+  color: white;
+  font-weight: 900;
   text-align: center;
   font-family: sans-serif;
   border-collapse: collapse;
-  // min-width: 835px;
+  border-radius: 50%;
 }
 
-.colTh {
-  border: 5px solid dodgerblue;
-  padding: 10px;
+.tr {
+  border-bottom: 5px solid black;
+  cursor: pointer;
 }
 
-.colTb {
+.colName {
   padding: 10px;
-  border-right: 5px solid dodgerblue;
+  border-right: 5px solid black;
+  min-width: 432px;
+}
+
+.colCapital {
+  border-right: 5px solid black;
+  min-width: 170px;
+}
+
+.colPopulation {
+  border-right: 5px solid black;
+  min-width: 101px;
+}
+
+.colCallingCodes {
+  min-width: 112px;
 }

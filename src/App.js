@@ -30,7 +30,7 @@ function App () {
   }, []);
 
   if (error) return 'Error!';
-  
+
   const sortCountry = () => {
     data.sort((a, b) => [
       flag ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name),
@@ -67,40 +67,45 @@ function App () {
 
   return (
     <div>
-      <input
-        type='text'
-        placeholder='Search...'
-        onChange={e => {
-          setSearchTerm(e.target.value);
-        }}
-      />
+      {loading ? (
+        <Skeleton variant='text' height={35} className={styles.inputSkeleton} />
+      ) : (
+        <input
+          className={styles.input}
+          type='text'
+          placeholder='Search...'
+          onChange={e => {
+            setSearchTerm(e.target.value);
+          }}
+        />
+      )}
       {loading ? (
         <div className={styles.containerSkeleton}>
-          <Skeleton variant='text' height={36} />
-          <Skeleton variant='text' height={36} />
-          <Skeleton variant='text' height={36} />
-          <Skeleton variant='text' height={36} />
-          <Skeleton variant='text' height={36} />
-          <Skeleton variant='text' height={36} />
-          <Skeleton variant='text' height={36} />
-          <Skeleton variant='text' height={36} />
-          <Skeleton variant='text' height={36} />
-          <Skeleton variant='text' height={36} />
+          <Skeleton variant='text' height={50} />
+          <Skeleton variant='text' height={50} />
+          <Skeleton variant='text' height={50} />
+          <Skeleton variant='text' height={50} />
+          <Skeleton variant='text' height={50} />
+          <Skeleton variant='text' height={50} />
+          <Skeleton variant='text' height={50} />
+          <Skeleton variant='text' height={50} />
+          <Skeleton variant='text' height={50} />
+          <Skeleton variant='text' height={50} />
         </div>
       ) : (
         <table className={styles.container}>
           <thead>
-            <tr>
-              <th className={styles.colTh} onClick={sortCountry}>
+            <tr className={styles.tr}>
+              <th className={styles.colName} onClick={sortCountry}>
                 Country
               </th>
-              <th className={styles.colTh} onClick={sortCapital}>
+              <th className={styles.colCapital} onClick={sortCapital}>
                 Capital
               </th>
-              <th className={styles.colTh} onClick={sortPopulation}>
+              <th className={styles.colPopulation} onClick={sortPopulation}>
                 Population
               </th>
-              <th className={styles.colTh} onClick={sortPhoneСode}>
+              <th className={styles.colCallingCodes} onClick={sortPhoneСode}>
                 Phone code
               </th>
             </tr>
@@ -119,11 +124,11 @@ function App () {
               .map((country, index) => {
                 return (
                   <>
-                    <tr key={index}>
-                      <td className={styles.colTb}>{country.name}</td>
-                      <td className={styles.colTb}>{country.capital}</td>
-                      <td className={styles.colTb}>{country.population}</td>
-                      <td className={styles.colTb}>{country.callingCodes}</td>
+                    <tr key={index} >
+                      <td className={styles.colName}>{country.name}</td>
+                      <td className={styles.colCapital}>{country.capital}</td>
+                      <td className={styles.colPopulation}>{country.population}</td>
+                      <td className={styles.colCallingCodes}>{country.callingCodes}</td>
                     </tr>
                   </>
                 );
