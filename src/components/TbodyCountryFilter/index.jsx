@@ -1,4 +1,4 @@
-import styles from './tbodyCountryFilter.module.scss';
+import styles from './tBodyCountryFilter.module.scss';
 
 const TbodyCountryFilter = () => {
   return <div></div>;

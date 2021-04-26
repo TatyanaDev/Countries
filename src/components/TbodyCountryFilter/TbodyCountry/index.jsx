@@ -1,4 +1,4 @@
-import styles from './tbodyCountry.module.scss';
+import styles from './tBodyCountry.module.scss';
 
 const TbodyCountry = () => {
   return <div></div>;
