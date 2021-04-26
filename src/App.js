@@ -61,10 +61,6 @@ function App () {
     setFlag(flag => !flag);
   };
 
-  const filter = () => {
-    setData();
-  };
-
   return (
     <div>
       {loading ? (
