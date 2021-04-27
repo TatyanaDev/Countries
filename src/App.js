@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import styles from './index.module.scss';
 import SkeletonSearch from './components/SearchCountry/SkeletonSearch/index';
 import InputSearch from './components/SearchCountry/InputSearch/index';
@@ -10,6 +10,10 @@ function App () {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+
+  const onChangeInput = useCallback(e => {
+    setSearchTerm(e.target.value);
+  }, []);
 
   useEffect(() => {
     fetch('https://restcountries.eu/rest/v2/all')
@@ -64,8 +68,12 @@ function App () {
   };
 
   return (
-    <div>
-      {loading ? <SkeletonSearch /> : <InputSearch value={setSearchTerm} />}
+    <>
+      {loading ? (
+        <SkeletonSearch />
+      ) : (
+        <InputSearch value={searchTerm} onChange={onChangeInput} />
+      )}
       {loading ? (
         <SkeletonTable />
       ) : (
@@ -86,39 +94,27 @@ function App () {
               </th>
             </tr>
           </thead>
-          <tbody >
-            {data
-              .filter(country => {
-                if (searchTerm === '') {
-                  return country;
-                } else if (
-                  country.name
-                    .toLowerCase()
-                    .indexOf(searchTerm.toLowerCase()) === 0
-                ) {
-                  return country;
-                }
-              })
-              .map((country, index) => {
-                return (
-                  <>
-                    <tr key={index}>
-                      <td className={styles.colName}>{country.name}</td>
-                      <td className={styles.colCapital}>{country.capital}</td>
-                      <td className={styles.colPopulation}>
-                        {country.population}
-                      </td>
-                      <td className={styles.colCallingCodes}>
-                        {country.callingCodes}
-                      </td>
-                    </tr>
-                  </>
-                );
-              })}
+          <tbody>
+            {data.map((country, index) => {
+              return (
+                <>
+                  <tr key={index}>
+                    <td className={styles.colName}>{country.name}</td>
+                    <td className={styles.colCapital}>{country.capital}</td>
+                    <td className={styles.colPopulation}>
+                      {country.population}
+                    </td>
+                    <td className={styles.colCallingCodes}>
+                      {country.callingCodes}
+                    </td>
+                  </tr>
+                </>
+              );
+            })}
           </tbody>
         </table>
       )}
-    </div>
+    </>
   );
 }
 

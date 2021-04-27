@@ -1,5 +1,5 @@
-const Request = () => {
+const Response = () => {
   return <div></div>;
 };
 
-export default Request;
+export default Response;

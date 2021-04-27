@@ -1,18 +1,14 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
 import styles from './inputSearch.module.scss';
 
-const InputSearch = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-
+const InputSearch = ({ value, onChange }) => {
   return (
     <input
-      value={searchTerm}
       className={styles.input}
       type='text'
       placeholder='Search...'
-      onChange={e => {
-        setSearchTerm(e.target.value);
-      }}
+      value={value}
+      onChange={onChange}
     />
   );
 };

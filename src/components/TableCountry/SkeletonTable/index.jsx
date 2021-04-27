@@ -1,7 +1,7 @@
 import Skeleton from '@material-ui/lab/Skeleton';
 import styles from './skeletonTable.module.scss';
 
-export default function SkeletonTable () {
+const SkeletonTable = () => {
   return (
     <div className={styles.containerSkeleton}>
       <Skeleton variant='text' height={50} />
@@ -16,4 +16,6 @@ export default function SkeletonTable () {
       <Skeleton variant='text' height={50} />
     </div>
   );
-}
+};
+
+export default SkeletonTable;
