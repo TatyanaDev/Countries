@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import Skeleton from '@material-ui/lab/Skeleton';
 import styles from './index.module.scss';
+import SkeletonSearch from './components/SearchCountry/SkeletonSearch/index';
+import InputSearch from './components/SearchCountry/InputSearch/index';
+import SkeletonTable from './components/TableCountry/SkeletonTable/index';
 
 function App () {
   const [data, setData] = useState([]);
@@ -63,31 +65,9 @@ function App () {
 
   return (
     <div>
+      {loading ? <SkeletonSearch /> : <InputSearch value={setSearchTerm} />}
       {loading ? (
-        <Skeleton variant='text' height={35} className={styles.inputSkeleton} />
-      ) : (
-        <input
-          className={styles.input}
-          type='text'
-          placeholder='Search...'
-          onChange={e => {
-            setSearchTerm(e.target.value);
-          }}
-        />
-      )}
-      {loading ? (
-        <div className={styles.containerSkeleton}>
-          <Skeleton variant='text' height={50} />
-          <Skeleton variant='text' height={50} />
-          <Skeleton variant='text' height={50} />
-          <Skeleton variant='text' height={50} />
-          <Skeleton variant='text' height={50} />
-          <Skeleton variant='text' height={50} />
-          <Skeleton variant='text' height={50} />
-          <Skeleton variant='text' height={50} />
-          <Skeleton variant='text' height={50} />
-          <Skeleton variant='text' height={50} />
-        </div>
+        <SkeletonTable />
       ) : (
         <table className={styles.container}>
           <thead>
@@ -106,7 +86,7 @@ function App () {
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody >
             {data
               .filter(country => {
                 if (searchTerm === '') {
