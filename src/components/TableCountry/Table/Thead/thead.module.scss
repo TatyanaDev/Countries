@@ -1,24 +1,22 @@
+@import "common/styles/templates";
+
 .tr {
   border-bottom: 5px solid black;
   cursor: pointer;
 }
 
 .colName {
-  padding: 10px;
-  border-right: 5px solid black;
-  min-width: 432px;
+  @extend %colName;
 }
 
 .colCapital {
-  border-right: 5px solid black;
-  min-width: 170px;
+  @extend %colCapital;
 }
 
 .colPopulation {
-  border-right: 5px solid black;
-  min-width: 101px;
+  @extend %colPopulation;
 }
 
 .colCallingCodes {
-  min-width: 112px;
+  @extend %colCallingCodes;
 }

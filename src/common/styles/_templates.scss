@@ -1,0 +1,23 @@
+%background {
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 0%, rgba(0, 212, 255, 1) 85%);
+}
+
+%colName {
+  padding: 10px;
+  border-right: 5px solid black;
+  min-width: 432px;
+}
+
+%colCapital {
+  border-right: 5px solid black;
+  min-width: 170px;
+}
+
+%colPopulation {
+  border-right: 5px solid black;
+  min-width: 101px;
+}
+
+%colCallingCodes {
+  min-width: 112px;
+}

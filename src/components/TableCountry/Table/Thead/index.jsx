@@ -4,10 +4,9 @@ import {
   sortCapital,
   sortPopulation,
   sortPhoneСode,
-} from './SortFunction/index';
+} from './SortFunction';
 
 const Thead = ({ data, flag, setFlag }) => {
-  console.log(data);
   return (
     <thead>
       <tr className={styles.tr}>

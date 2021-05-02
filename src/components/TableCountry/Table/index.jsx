@@ -1,6 +1,6 @@
 import styles from './table.module.scss';
-import Thead from './Thead/index';
-import TbodyFunction from './TbodyFunction/index';
+import Thead from './Thead';
+import TbodyFunction from './TbodyFunction';
 
 const Table = ({ data, flag, setFlag, searchTerm }) => {
   return (

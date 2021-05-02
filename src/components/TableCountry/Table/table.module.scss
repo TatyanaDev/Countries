@@ -1,13 +1,10 @@
+@import "common/styles/templates";
+
 .container {
+  @extend %background;
   margin: 0 auto;
   margin-top: 50px;
   border: 5px solid black;
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 0%,
-    rgba(0, 212, 255, 1) 85%
-  );
   color: white;
   font-weight: 900;
   text-align: center;
