@@ -1,50 +1,39 @@
 import styles from './thead.module.scss';
+import {
+  sortCountry,
+  sortCapital,
+  sortPopulation,
+  sortPhoneСode,
+} from './SortFunction/index';
 
 const Thead = ({ data, flag, setFlag }) => {
-
-  const sortCountry = () => {
-    data.sort((a, b) => [
-      flag ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name),
-    ]);
-    setFlag(flag => !flag);
-  };
-
-  const sortCapital = () => {
-    data.sort((a, b) => [
-      flag
-        ? a.capital.localeCompare(b.capital)
-        : b.capital.localeCompare(a.capital),
-    ]);
-    setFlag(flag => !flag);
-  };
-
-  const sortPopulation = () => {
-    data.sort((a, b) => [
-      flag ? a.population - b.population : b.population - a.population,
-    ]);
-    setFlag(flag => !flag);
-  };
-
-  const sortPhoneСode = () => {
-    data.sort((a, b) => [
-      flag ? a.callingCodes - b.callingCodes : b.callingCodes - a.callingCodes,
-    ]);
-    setFlag(flag => !flag);
-  };
-
+  console.log(data);
   return (
     <thead>
       <tr className={styles.tr}>
-        <th className={styles.colName} onClick={sortCountry}>
+        <th
+          className={styles.colName}
+          onClick={() => sortCountry({ data, flag, setFlag })}
+        >
           Country
         </th>
-        <th className={styles.colCapital} onClick={sortCapital}>
+
+        <th
+          className={styles.colCapital}
+          onClick={() => sortCapital({ data, flag, setFlag })}
+        >
           Capital
         </th>
-        <th className={styles.colPopulation} onClick={sortPopulation}>
+        <th
+          className={styles.colPopulation}
+          onClick={() => sortPopulation({ data, flag, setFlag })}
+        >
           Population
         </th>
-        <th className={styles.colCallingCodes} onClick={sortPhoneСode}>
+        <th
+          className={styles.colCallingCodes}
+          onClick={() => sortPhoneСode({ data, flag, setFlag })}
+        >
           Phone code
         </th>
       </tr>
