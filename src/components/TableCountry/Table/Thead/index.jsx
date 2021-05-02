@@ -16,7 +16,6 @@ const Thead = ({ data, flag, setFlag }) => {
         >
           Country
         </th>
-
         <th
           className={styles.colCapital}
           onClick={() => sortCapital({ data, flag, setFlag })}

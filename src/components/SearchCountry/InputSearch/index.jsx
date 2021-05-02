@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './inputSearch.module.scss';
 
 const InputSearch = ({ value, onChange }) => {
