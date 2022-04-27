@@ -1,7 +1,6 @@
-import Response from './utils/server'
+import Countries from 'page/Countries'
 
-function App () {
-  return <Response />;
+export default function App () {
+  return <Countries />;
 }
 
-export default App;

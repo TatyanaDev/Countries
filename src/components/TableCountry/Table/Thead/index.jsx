@@ -1,12 +1,7 @@
+import { sortCountry, sortCapital, sortPopulation, sortPhoneСode } from './SortFunctions';
 import styles from './thead.module.scss';
-import {
-  sortCountry,
-  sortCapital,
-  sortPopulation,
-  sortPhoneСode,
-} from './SortFunction';
 
-const Thead = ({ data, flag, setFlag }) => {
+export default function Thead ({ data, flag, setFlag }) {
   return (
     <thead>
       <tr className={styles.tr}>
@@ -37,6 +32,4 @@ const Thead = ({ data, flag, setFlag }) => {
       </tr>
     </thead>
   );
-};
-
-export default Thead;
+}
