@@ -1,6 +1,6 @@
-import styles from './tbodyItem.module.scss';
+import styles from "./tbodyItem.module.scss";
 
-export default function TbodyItem ({ country }) {
+export default function TbodyItem({ country }) {
   return (
     <tr>
       <td className={styles.colName}>{country.name}</td>

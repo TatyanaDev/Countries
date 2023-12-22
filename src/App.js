@@ -1,6 +1,5 @@
-import Countries from 'page/Countries'
+import Countries from "page/Countries";
 
-export default function App () {
+export default function App() {
   return <Countries />;
 }
-

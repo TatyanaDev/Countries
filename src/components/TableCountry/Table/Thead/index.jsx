@@ -1,7 +1,12 @@
-import { sortCountry, sortCapital, sortPopulation, sortPhoneСode } from './SortFunctions';
-import styles from './thead.module.scss';
+import {
+  sortCountry,
+  sortCapital,
+  sortPopulation,
+  sortPhoneCode,
+} from "./SortFunctions";
+import styles from "./thead.module.scss";
 
-export default function Thead ({ data, flag, setFlag }) {
+export default function Thead({ data, flag, setFlag }) {
   return (
     <thead>
       <tr className={styles.tr}>
@@ -25,7 +30,7 @@ export default function Thead ({ data, flag, setFlag }) {
         </th>
         <th
           className={styles.colCallingCodes}
-          onClick={() => sortPhoneСode({ data, flag, setFlag })}
+          onClick={() => sortPhoneCode({ data, flag, setFlag })}
         >
           Phone code
         </th>
