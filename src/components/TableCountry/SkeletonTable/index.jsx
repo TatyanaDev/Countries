@@ -4,16 +4,11 @@ import styles from "./skeletonTable.module.scss";
 export default function SkeletonTable() {
   return (
     <div className={styles.containerSkeleton}>
-      <Skeleton variant="text" height={50} />
-      <Skeleton variant="text" height={50} />
-      <Skeleton variant="text" height={50} />
-      <Skeleton variant="text" height={50} />
-      <Skeleton variant="text" height={50} />
-      <Skeleton variant="text" height={50} />
-      <Skeleton variant="text" height={50} />
-      <Skeleton variant="text" height={50} />
-      <Skeleton variant="text" height={50} />
-      <Skeleton variant="text" height={50} />
+      {Array(10)
+        .fill()
+        .map((item, index) => (
+          <Skeleton variant="text" height={50} key={index} />
+        ))}
     </div>
   );
 }

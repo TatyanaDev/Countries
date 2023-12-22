@@ -6,25 +6,38 @@ import Table from "components/TableCountry/Table";
 
 export default function Countries() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [flag, setFlag] = useState(false);
   const [data, setData] = useState([]);
 
-  const onChangeInput = useCallback((e) => setSearchTerm(e.target.value), []);
-
-  useEffect(
-    () =>
-      fetch("https://restcountries.com/v2/all")
-        .then((res) => res.json())
-        .then((data) => setData(data))
-        .catch((err) => {
-          console.error("Error fetching data:", err);
-          setError(err);
-        })
-        .finally(() => setLoading(false)),
+  const onChangeInput = useCallback(
+    ({ target: { value } }) => setSearchTerm(value),
     []
   );
+
+  useEffect(() => {
+    setLoading(true);
+
+    fetch("https://restcountries.com/v2/all")
+      .then((res) => res.json())
+      .then((data) => {
+        const preparedData = data.map((country) => ({
+          ...country,
+          callingCodes: parseInt(
+            country.callingCodes[0].replace(/\s+/g, ""),
+            10
+          ),
+        }));
+
+        setData(preparedData);
+      })
+      .catch((err) => {
+        console.error("Error fetching data:", err);
+        setError(err);
+      })
+      .finally(() => setLoading(false));
+  }, []);
 
   if (error) {
     return "Error!";

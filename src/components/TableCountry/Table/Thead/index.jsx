@@ -3,7 +3,7 @@ import {
   sortCapital,
   sortPopulation,
   sortPhoneCode,
-} from "./SortFunctions";
+} from "./utils/sort-functions";
 import styles from "./thead.module.scss";
 
 export default function Thead({ data, flag, setFlag }) {

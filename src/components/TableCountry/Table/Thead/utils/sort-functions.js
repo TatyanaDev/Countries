@@ -6,11 +6,19 @@ export const sortCountry = ({ data, flag, setFlag }) => {
 };
 
 export const sortCapital = ({ data, flag, setFlag }) => {
-  data.sort((a, b) =>
+  const withCapital = data.filter(({ capital }) => capital);
+  const withoutCapital = data.filter(({ capital }) => !capital);
+
+  withCapital.sort((a, b) =>
     flag
       ? a.capital?.localeCompare(b.capital)
       : b.capital?.localeCompare(a.capital)
   );
+
+  flag
+    ? data.splice(0, data.length, ...[...withCapital, ...withoutCapital])
+    : data.splice(0, data.length, ...[...withoutCapital, ...withCapital]);
+
   setFlag((flag) => !flag);
 };
 

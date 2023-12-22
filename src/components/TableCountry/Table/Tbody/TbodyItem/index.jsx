@@ -6,7 +6,7 @@ export default function TbodyItem({ country }) {
       <td className={styles.colName}>{country.name}</td>
       <td className={styles.colCapital}>{country.capital}</td>
       <td className={styles.colPopulation}>{country.population}</td>
-      <td className={styles.colCallingCodes}>{country.callingCodes[0]}</td>
+      <td className={styles.colCallingCodes}>{country.callingCodes}</td>
     </tr>
   );
 }
