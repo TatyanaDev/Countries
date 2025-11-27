@@ -1,7 +1,7 @@
-@import "common/styles/templates";
+@use "common/styles/templates" as *;
 
 .container {
-  @extend %background;
+  @extend %background !optional;
   border: 5px solid black;
   border-collapse: collapse;
   font-family: sans-serif;

@@ -1,4 +1,4 @@
-@import "common/styles/templates";
+@use "common/styles/templates" as *;
 
 .tr {
   border-bottom: 5px solid black;
@@ -6,17 +6,17 @@
 }
 
 .colName {
-  @extend %colName;
+  @extend %colName !optional;
 }
 
 .colCapital {
-  @extend %colCapital;
+  @extend %colCapital !optional;
 }
 
 .colPopulation {
-  @extend %colPopulation;
+  @extend %colPopulation !optional;
 }
 
 .colCallingCodes {
-  @extend %colCallingCodes;
+  @extend %colCallingCodes !optional;
 }

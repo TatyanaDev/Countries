@@ -1,9 +1,9 @@
-@import "src/common/styles/templates";
+@use "src/common/styles/templates" as *;
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  @extend %background;
+  @extend %background !optional;
 }

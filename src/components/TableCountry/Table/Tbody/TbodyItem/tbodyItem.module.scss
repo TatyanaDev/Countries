@@ -1,17 +1,13 @@
-@import "common/styles/templates";
+@use "common/styles/templates" as *;
 
 .colName {
-  @extend %colName;
+  @extend %colName !optional;
 }
 
 .colCapital {
-  @extend %colCapital;
+  @extend %colCapital !optional;
 }
 
 .colPopulation {
-  @extend %colPopulation;
-}
-
-.colCallingCodes {
-  @extend %colCallingCodes;
+  @extend %colPopulation !optional;
 }

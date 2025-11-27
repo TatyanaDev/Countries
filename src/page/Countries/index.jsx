@@ -19,15 +19,13 @@ export default function Countries() {
   useEffect(() => {
     setLoading(true);
 
-    fetch("https://restcountries.com/v2/all")
+    fetch("https://restcountries.com/v3.1/all?fields=name,capital,population")
       .then((res) => res.json())
       .then((data) => {
         const preparedData = data.map((country) => ({
           ...country,
-          callingCodes: parseInt(
-            country.callingCodes[0].replace(/\s+/g, ""),
-            10
-          ),
+          name: country.name.common,
+          capital: country.capital[0],
         }));
 
         setData(preparedData);
@@ -40,7 +38,7 @@ export default function Countries() {
   }, []);
 
   if (error) {
-    return "Error!";
+    return "Failed to load data. Please try again later.";
   }
 
   return (
